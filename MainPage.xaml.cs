@@ -72,6 +72,13 @@ public class MainPageViewModel : INotifyPropertyChanged
         {
             snake.Insert(0, newHead);
             GenerateFood();
+#if MACCATALYST
+            // Esempio: sblocca un obiettivo ogni volta che il giocatore mangia il cibo
+            if (Application.Current is App app)
+            {
+                app.ReportAchievement("YOUR_ACHIEVEMENT_ID"); // Sostituisci con il tuo ID reale
+            }
+#endif
         }
         else
         {
@@ -130,9 +137,30 @@ public partial class MainPage : ContentPage
 
     private void OnRestartClicked(object sender, EventArgs e)
     {
+#if MACCATALYST
+        // Mostra la leaderboard quando il giocatore preme Restart dopo un game over
+        if (viewModel.GameOver)
+        {
+            if (Application.Current is App app)
+            {
+                app.ShowLeaderboard("YOUR_LEADERBOARD_ID"); // Sostituisci con il tuo ID
+                app.ReportAchievement("YOUR_ACHIEVEMENT_ID"); // Sostituisci con il tuo ID
+            }
+        }
+#endif
         viewModel.StartGame();
         GameView.Invalidate();
         timer.Start();
+    }
+
+    private void OnLeaderboardClicked(object sender, EventArgs e)
+    {
+#if MACCATALYST
+        if (Application.Current is App app)
+        {
+            app.ShowLeaderboard("YOUR_LEADERBOARD_ID"); // Sostituisci con il tuo ID reale
+        }
+#endif
     }
 
     protected override void OnAppearing()
