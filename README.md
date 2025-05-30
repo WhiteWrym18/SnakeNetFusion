@@ -13,9 +13,9 @@ NOTE: .NET 10 Preview 4 is currently not available for download on GitHub Action
 | Windows 10/11        | .NET 10 Preview    | ⚠️ (CI not available) | Modern MAUI version                                      |
 | Ubuntu 25.04         | .NET 10 Preview    | ⚠️ (CI not available) | GTK (Linux)                                              |
 | macOS (Catalyst)     | .NET 10 Preview    | ⚠️ (CI not available) | Mac Catalyst                                             |
-| Windows 7/8/8.1      | .NET 6             |[SnakeNetClassic](https://github.com/WhiteWrym18/SnakeNetClassic)                 |
-| Windows 95/98/ME     | dotnet9x           |[SnakeNetClassic](https://github.com/WhiteWrym18/SnakeNetClassic)                 |
-| Windows XP/Vista     | .NET Framework 3.5 |[SnakeNetClassic](https://github.com/WhiteWrym18/SnakeNetClassic)                 |
+| Windows 7/8/8.1      | .NET 6             || [SnakeNetClassic](https://github.com/WhiteWrym18/SnakeNetClassic)                 |
+| Windows 95/98/ME     |[dotnet9x ](https://github.com/itsmattkc/dotnet9x)|| [SnakeNetClassic](https://github.com/WhiteWrym18/SnakeNetClassic) |
+| Windows XP/Vista     | .NET Framework 3.5 || [SnakeNetClassic](https://github.com/WhiteWrym18/SnakeNetClassic)                 |
 
 This application is compatible with Windows 10/11 (via .NET 10 Preview), Ubuntu 25.04 (via .NET 10 GTK), and macOS (via Mac Catalyst).
 
