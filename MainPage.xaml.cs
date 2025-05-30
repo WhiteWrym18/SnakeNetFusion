@@ -178,6 +178,62 @@ public partial class MainPage : ContentPage
 #endif
     }
 
+    private async void OnAchievementsClicked(object sender, EventArgs e)
+    {
+#if MACCATALYST
+        if (Application.Current is App app)
+        {
+            app.GetAchievementsStatus(achievements =>
+            {
+                var msg = "";
+                foreach (var ach in achievements)
+                {
+                    msg += $"ID: {ach.Identifier}\nPercent: {ach.PercentComplete}%\nCompleted: {ach.Completed}\n\n";
+                }
+                if (string.IsNullOrWhiteSpace(msg))
+                    msg = "No achievements found.";
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current?.MainPage?.DisplayAlert("Achievements Status", msg, "OK");
+                });
+            });
+        }
+#endif
+    }
+
+    private async void OnLeaderboardStatusClicked(object sender, EventArgs e)
+    {
+#if MACCATALYST
+        if (Application.Current is App app)
+        {
+            app.GetLeaderboardStatus("YOUR_LEADERBOARD_ID", (leaderboard, error) =>
+            {
+                string msg;
+                if (error != null)
+                {
+                    msg = $"Error: {error.LocalizedDescription}";
+                }
+                else if (leaderboard?.Scores != null && leaderboard.Scores.Length > 0)
+                {
+                    msg = "Leaderboard scores:\n";
+                    foreach (var score in leaderboard.Scores)
+                    {
+                        msg += $"Player: {score.Player.Alias}\nScore: {score.Value}\nRank: {score.Rank}\n\n";
+                    }
+                }
+                else
+                {
+                    msg = "No scores found.";
+                }
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current?.MainPage?.DisplayAlert("Leaderboard Status", msg, "OK");
+                });
+            });
+        }
+#endif
+    }
+
     protected override void OnAppearing()
     {
         base.OnAppearing();

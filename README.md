@@ -40,6 +40,6 @@ dotnet build -f net10.0-windows
 Tuttavia, considera che:
 
 
-- , né la lettura dello stato degli achievements o delle classifiche (solo invio/visualizzazione).
+
 
 Se ti serve anche la lettura dei punteggi, la gestione di eventi di autenticazione, o , chiedi pure!

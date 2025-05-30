@@ -82,5 +82,43 @@ public partial class App : Application
             }
         });
     }
+
+    public void GetAchievementsStatus(Action<List<GKAchievement>> onCompleted)
+    {
+        GKAchievement.LoadAchievements((achievements, error) =>
+        {
+            if (error != null)
+            {
+                System.Diagnostics.Debug.WriteLine($"Game Center achievements load error: {error.LocalizedDescription}");
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current?.MainPage?.DisplayAlert("Game Center Error", error.LocalizedDescription, "OK");
+                });
+                onCompleted?.Invoke(new List<GKAchievement>());
+                return;
+            }
+            onCompleted?.Invoke(achievements?.ToList() ?? new List<GKAchievement>());
+        });
+    }
+
+    public void GetLeaderboardStatus(string leaderboardId, Action<GKLeaderboard, NSError> onCompleted)
+    {
+        var leaderboard = new GKLeaderboard();
+        leaderboard.Identifier = leaderboardId;
+        leaderboard.LoadScores((scores, error) =>
+        {
+            if (error != null)
+            {
+                System.Diagnostics.Debug.WriteLine($"Game Center leaderboard load error: {error.LocalizedDescription}");
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current?.MainPage?.DisplayAlert("Game Center Error", error.LocalizedDescription, "OK");
+                });
+                onCompleted?.Invoke(null, error);
+                return;
+            }
+            onCompleted?.Invoke(leaderboard, null);
+        });
+    }
 #endif
 }
