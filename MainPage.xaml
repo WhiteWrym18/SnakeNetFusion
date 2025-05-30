@@ -22,5 +22,15 @@
                 HorizontalOptions="Center"
                 VerticalOptions="End"
                 Margin="0,0,0,40"/>
+        <Button Text="Leaderboard"
+                Clicked="OnLeaderboardClicked"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Margin="0,40,40,0"/>
+        <Button Text="Achievements"
+                Clicked="OnLeaderboardClicked"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Margin="40,40,0,0"/>
     </Grid>
 </ContentPage>

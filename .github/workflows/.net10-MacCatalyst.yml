@@ -21,3 +21,28 @@
 #         run: dotnet build --framework net10.0-maccatalyst --configuration Release --no-restore
 #       - name: Test (Mac Catalyst)
 #         run: dotnet test --framework net10.0-maccatalyst --no-build || echo "Test step failed (expected for preview)"
+#       - name: Run UI Tests (Game Center and Multiplayer)
+#         run: |
+#           dotnet test --framework net10.0-maccatalyst --filter "Category=GameCenter|Category=Multiplayer" --no-build
+#
+#       - name: Validate Dependencies
+#         run: dotnet list package --outdated
+#
+#       - name: Lint Code
+#         run: dotnet format --check
+#       - name: Cache dependencies
+#         uses: actions/cache@v3
+#         with:
+#           path: ~/.nuget/packages
+#           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+#           restore-keys: |
+#             ${{ runner.os }}-nuget-
+#
+#       - name: Run Tests in Parallel
+#         run: |
+#           dotnet test --framework net10.0-maccatalyst --no-build --parallel
+#
+#       - name: Generate Code Coverage Report
+#         run: |
+#           dotnet test --framework net10.0-maccatalyst --collect:"XPlat Code Coverage" --no-build
+#           reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage-report -reporttypes:Html
