@@ -1,5 +1,5 @@
 # Workflow temporarily disabled: .NET 10 Preview is not available for download (404 error on all previews)
-# name: Build on Ubuntu 25.04 with .NET 10
+# name: Build on Ubuntu 24.04 with .NET 10
 #
 # on:
 #   push:
