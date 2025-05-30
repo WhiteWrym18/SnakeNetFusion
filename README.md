@@ -3,8 +3,8 @@
 <!--
 NOTE: .NET 10 Preview 4 is currently not available for download on GitHub Actions. The following badges may show failing status until a new preview or stable version is released by Microsoft.
 -->
-[![Build .NET 10 (Windows 10/11 Preview)](https://github.com/WhiteWrym18/SnakeNet/actions/workflows/build-dotnet10-preview.yml/badge.svg?branch=main)](https://github.com/WhiteWrym18/SnakeNet/actions/workflows/build-dotnet10-preview.yml)
-[![Build .NET 10 (Ubuntu 25.04)](https://github.com/WhiteWrym18/SnakeNet/actions/workflows/build-dotnet10-ubuntu-2504.yml/badge.svg?branch=main)](https://github.com/WhiteWrym18/SnakeNet/actions/workflows/build-dotnet10-ubuntu-2504.yml)
+[![Build .NET 10 (Windows 10/11 Preview)](https://github.com/WhiteWrym18/SnakeNetFusion/actions/workflows/build-dotnet10-preview.yml/badge.svg?branch=main)](https://github.com/WhiteWrym18/SnakeNetFusion/actions/workflows/build-dotnet10-preview.yml)
+[![Build .NET 10 (Ubuntu 25.04)](https://github.com/WhiteWrym18/SnakeNetFusion/actions/workflows/build-dotnet10-ubuntu-2504.yml/badge.svg?branch=main)](https://github.com/WhiteWrym18/SnakeNetFusion/actions/workflows/build-dotnet10-ubuntu-2504.yml)
 
 ## Compatibility
 
