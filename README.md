@@ -34,12 +34,3 @@ dotnet build -f net10.0-windows
 # or
 # dotnet build -f net10.0-maccatalyst
 ```
-
-## Note sull'integrazione Game Center
-
-Tuttavia, considera che:
-
-
-
-
-, la gestione di eventi di autenticazione, o , chiedi pure!
