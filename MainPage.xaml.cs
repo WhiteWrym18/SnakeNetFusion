@@ -19,6 +19,9 @@ public class MainPageViewModel : INotifyPropertyChanged
     public GameDrawable GameDrawable { get; }
     public event PropertyChangedEventHandler PropertyChanged;
 
+    private int foodEaten = 0;
+    private int score = 0;
+
     public bool GameOver
     {
         get => gameOver;
@@ -37,6 +40,8 @@ public class MainPageViewModel : INotifyPropertyChanged
         snake.Add(new Point(5, 5));
         direction = "Right";
         GameOver = false;
+        foodEaten = 0;
+        score = 0;
         GenerateFood();
         OnPropertyChanged(nameof(GameDrawable));
     }
@@ -72,11 +77,22 @@ public class MainPageViewModel : INotifyPropertyChanged
         {
             snake.Insert(0, newHead);
             GenerateFood();
+            foodEaten++;
+            score += 10; // esempio: ogni cibo vale 10 punti
 #if MACCATALYST
-            // Esempio: sblocca un obiettivo ogni volta che il giocatore mangia il cibo
-            if (Application.Current is App app)
+            if (foodEaten == 10)
             {
-                app.ReportAchievement("YOUR_ACHIEVEMENT_ID"); // Sostituisci con il tuo ID reale
+                if (Application.Current is App app)
+                {
+                    app.ReportAchievement("ACHIEVEMENT_10_FOOD"); // Sostituisci con il tuo ID reale
+                }
+            }
+            if (score >= 100)
+            {
+                if (Application.Current is App app)
+                {
+                    app.ReportAchievement("ACHIEVEMENT_100_SCORE"); // Sostituisci con il tuo ID reale
+                }
             }
 #endif
         }
@@ -138,12 +154,11 @@ public partial class MainPage : ContentPage
     private void OnRestartClicked(object sender, EventArgs e)
     {
 #if MACCATALYST
-        // Mostra la leaderboard quando il giocatore preme Restart dopo un game over
+        // Rimuoviamo la chiamata a ShowLeaderboard: ora la classifica si apre solo dal pulsante dedicato
         if (viewModel.GameOver)
         {
             if (Application.Current is App app)
             {
-                app.ShowLeaderboard("YOUR_LEADERBOARD_ID"); // Sostituisci con il tuo ID
                 app.ReportAchievement("YOUR_ACHIEVEMENT_ID"); // Sostituisci con il tuo ID
             }
         }

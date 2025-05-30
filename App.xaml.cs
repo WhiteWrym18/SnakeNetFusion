@@ -18,6 +18,14 @@ public partial class App : Application
     {
         GKLocalPlayer.LocalPlayer.AuthenticateHandler = (viewController, error) =>
         {
+            if (error != null)
+            {
+                System.Diagnostics.Debug.WriteLine($"Game Center authentication error: {error.LocalizedDescription}");
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current?.MainPage?.DisplayAlert("Game Center Error", error.LocalizedDescription, "OK");
+                });
+            }
             if (viewController != null)
             {
                 var window = UIApplication.SharedApplication.KeyWindow;
@@ -39,7 +47,16 @@ public partial class App : Application
             window?.RootViewController?.DismissViewController(true, null);
         };
         var windowToShow = UIApplication.SharedApplication.KeyWindow;
-        windowToShow?.RootViewController?.PresentViewController(viewController, true, null);
+        if (viewController == null || windowToShow?.RootViewController == null)
+        {
+            System.Diagnostics.Debug.WriteLine("Game Center: Unable to show leaderboard (viewController or window is null)");
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                Application.Current?.MainPage?.DisplayAlert("Game Center Error", "Unable to show leaderboard.", "OK");
+            });
+            return;
+        }
+        windowToShow.RootViewController.PresentViewController(viewController, true, null);
     }
 
     public void ReportAchievement(string achievementId, double percentComplete = 100.0)
@@ -54,6 +71,14 @@ public partial class App : Application
             if (error != null)
             {
                 System.Diagnostics.Debug.WriteLine($"Game Center achievement error: {error.LocalizedDescription}");
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current?.MainPage?.DisplayAlert("Game Center Error", error.LocalizedDescription, "OK");
+                });
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine($"Achievement {achievementId} reported successfully.");
             }
         });
     }

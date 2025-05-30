@@ -39,8 +39,7 @@ dotnet build -f net10.0-windows
 
 Tuttavia, considera che:
 
-- Devi chiamare `ShowLeaderboard` e `ReportAchievement` nei punti giusti della tua app (ad esempio, quando il giocatore vuole vedere la classifica o sblocca un obiettivo).
-- L’ID della leaderboard e degli achievements deve essere quello configurato su App Store Connect.
-- Non hai ancora la gestione di errori avanzata, né la lettura dello stato degli achievements o delle classifiche (solo invio/visualizzazione).
 
-Se ti serve anche la lettura dei punteggi, la gestione di eventi di autenticazione, o vuoi integrare questi metodi nell’interfaccia utente, chiedi pure!
+- , né la lettura dello stato degli achievements o delle classifiche (solo invio/visualizzazione).
+
+Se ti serve anche la lettura dei punteggi, la gestione di eventi di autenticazione, o , chiedi pure!
