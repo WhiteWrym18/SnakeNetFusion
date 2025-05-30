@@ -1,3 +1,4 @@
+# Temporarily disabled: .NET 10 Preview is not available for download (404 error on all previews)
 # name: Build on Mac Catalyst with .NET 10 Preview
 #
 # on:
