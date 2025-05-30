@@ -1,4 +1,4 @@
-# SnakeNet
+# SnakeNetFusion
 
 <!--
 NOTE: .NET 10 Preview 4 is currently not available for download on GitHub Actions. The following badges may show failing status until a new preview or stable version is released by Microsoft.
