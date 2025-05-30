@@ -8,13 +8,17 @@ NOTE: .NET 10 Preview 4 is currently not available for download on GitHub Action
 
 ## Compatibility
 
+| Operating System      | Framework          | Supported            | Note                                                     |
+|----------------------|--------------------|----------------------|----------------------------------------------------------|
+| Windows 10/11        | .NET 10 Preview    | ⚠️ (CI not available) | Modern MAUI version                                      |
+| Ubuntu 25.04         | .NET 10 Preview    | ⚠️ (CI not available) | GTK (Linux)                                              |
+| macOS (Catalyst)     | .NET 10 Preview    | ⚠️ (CI not available) | Mac Catalyst                                             |
+| Windows 7/8/8.1      | .NET 6             |[SnakeNetClassic](https://github.com/WhiteWrym18/SnakeNetClassic)                 |
+| Windows 95/98/ME     | dotnet9x           |[SnakeNetClassic](https://github.com/WhiteWrym18/SnakeNetClassic)                 |
+| Windows XP/Vista     | .NET Framework 3.5 |[SnakeNetClassic](https://github.com/WhiteWrym18/SnakeNetClassic)                 |
 
-| Operating System | Framework        | Supported |
-|------------------|-----------------|-----------|
-| Windows 10/11    | .NET 10 Preview | ⚠️ (CI not available) |
-| Ubuntu 25.04     | .NET 10 Preview | ⚠️ (CI not available) |
+This application is compatible with Windows 10/11 (via .NET 10 Preview), Ubuntu 25.04 (via .NET 10 GTK), and macOS (via Mac Catalyst).
 
-This application is compatible with Windows 10/11 (via .NET 10 Preview) and Ubuntu 25.04 (via .NET 10).
 
 **Note:** .NET 10 Preview 4 is not currently available for download on GitHub Actions. CI builds for .NET 10 will fail until Microsoft releases a new preview or stable version. Local builds may still work if you have the SDK installed.
 
@@ -25,5 +29,7 @@ Build and run with:
 ```
 dotnet build -f net10.0-windows
 # or
-# dotnet build -f net10.0
+# dotnet build -f net10.0-gtk
+# or
+# dotnet build -f net10.0-maccatalyst
 ```
