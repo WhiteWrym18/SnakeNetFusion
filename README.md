@@ -42,4 +42,4 @@ Tuttavia, considera che:
 
 
 
-Se ti serve anche la lettura dei punteggi, la gestione di eventi di autenticazione, o , chiedi pure!
+, la gestione di eventi di autenticazione, o , chiedi pure!

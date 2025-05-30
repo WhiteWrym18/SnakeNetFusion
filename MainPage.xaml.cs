@@ -234,6 +234,35 @@ public partial class MainPage : ContentPage
 #endif
     }
 
+    private async void OnPlayerScoreClicked(object sender, EventArgs e)
+    {
+#if MACCATALYST
+        if (Application.Current is App app)
+        {
+            app.GetPlayerScore("YOUR_LEADERBOARD_ID", (score, error) =>
+            {
+                string msg;
+                if (error != null)
+                {
+                    msg = $"Error: {error.LocalizedDescription}";
+                }
+                else if (score != null)
+                {
+                    msg = $"Your score: {score.Value}\nRank: {score.Rank}";
+                }
+                else
+                {
+                    msg = "No score found.";
+                }
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current?.MainPage?.DisplayAlert("Your Leaderboard Score", msg, "OK");
+                });
+            });
+        }
+#endif
+    }
+
     protected override void OnAppearing()
     {
         base.OnAppearing();

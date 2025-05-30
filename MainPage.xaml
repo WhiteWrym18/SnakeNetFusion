@@ -28,14 +28,9 @@
                 VerticalOptions="Start"
                 Margin="0,40,40,0"/>
         <Button Text="Achievements"
-                Clicked="OnAchievementsClicked"
+                Clicked="OnLeaderboardClicked"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"
                 Margin="40,40,0,0"/>
-        <Button Text="Leaderboard Status"
-                Clicked="OnLeaderboardStatusClicked"
-                HorizontalOptions="End"
-                VerticalOptions="Start"
-                Margin="0,80,40,0"/>
     </Grid>
 </ContentPage>

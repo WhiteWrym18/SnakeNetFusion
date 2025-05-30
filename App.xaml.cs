@@ -120,5 +120,26 @@ public partial class App : Application
             onCompleted?.Invoke(leaderboard, null);
         });
     }
+
+    public void GetPlayerScore(string leaderboardId, Action<GKScore, NSError> onCompleted)
+    {
+        var leaderboard = new GKLeaderboard();
+        leaderboard.Identifier = leaderboardId;
+        leaderboard.LoadScores((scores, error) =>
+        {
+            if (error != null)
+            {
+                System.Diagnostics.Debug.WriteLine($"Game Center player score load error: {error.LocalizedDescription}");
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current?.MainPage?.DisplayAlert("Game Center Error", error.LocalizedDescription, "OK");
+                });
+                onCompleted?.Invoke(null, error);
+                return;
+            }
+            var playerScore = leaderboard.LocalPlayerScore;
+            onCompleted?.Invoke(playerScore, null);
+        });
+    }
 #endif
 }
