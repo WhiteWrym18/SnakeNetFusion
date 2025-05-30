@@ -31,6 +31,18 @@ public partial class App : Application
                 var window = UIApplication.SharedApplication.KeyWindow;
                 window?.RootViewController?.PresentViewController(viewController, true, null);
             }
+            else
+            {
+                // Evento: autenticazione completata (successo o fallimento)
+                var isAuthenticated = GKLocalPlayer.LocalPlayer.Authenticated;
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    if (isAuthenticated)
+                        Application.Current?.MainPage?.DisplayAlert("Game Center", "Authentication successful!", "OK");
+                    else
+                        Application.Current?.MainPage?.DisplayAlert("Game Center", "Authentication failed or cancelled.", "OK");
+                });
+            }
         };
     }
 
@@ -139,6 +151,54 @@ public partial class App : Application
             }
             var playerScore = leaderboard.LocalPlayerScore;
             onCompleted?.Invoke(playerScore, null);
+        });
+    }
+
+    public void SubmitPlayerScore(string leaderboardId, long score)
+    {
+        var scoreReporter = new GKScore(leaderboardId)
+        {
+            Value = score
+        };
+        GKScore.ReportScores(new[] { scoreReporter }, (error) =>
+        {
+            if (error != null)
+            {
+                System.Diagnostics.Debug.WriteLine($"Game Center score submission error: {error.LocalizedDescription}");
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current?.MainPage?.DisplayAlert("Game Center Error", error.LocalizedDescription, "OK");
+                });
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Score submitted successfully.");
+            }
+        });
+    }
+
+    public void StartMultiplayerMatch(Action<GKMatch, NSError> onMatchStarted)
+    {
+        var request = new GKMatchRequest
+        {
+            MinPlayers = 2,
+            MaxPlayers = 4
+        };
+
+        var matchmaker = new GKMatchmaker();
+        matchmaker.FindMatch(request, (match, error) =>
+        {
+            if (error != null)
+            {
+                System.Diagnostics.Debug.WriteLine($"Game Center multiplayer match error: {error.LocalizedDescription}");
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current?.MainPage?.DisplayAlert("Game Center Error", error.LocalizedDescription, "OK");
+                });
+                onMatchStarted?.Invoke(null, error);
+                return;
+            }
+            onMatchStarted?.Invoke(match, null);
         });
     }
 #endif
