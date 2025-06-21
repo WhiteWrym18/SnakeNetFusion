@@ -1,4 +1,7 @@
-# SnakeNetFusion
+# **This repo contains a game build by VS Code Agent**  
+# **This Was A Test**
+
+## SnakeNetFusion
 
 <!--
 NOTE: .NET 10 Preview 4 is currently not available for download on GitHub Actions. The following badges may show failing status until a new preview or stable version is released by Microsoft.
@@ -7,7 +10,7 @@ NOTE: .NET 10 Preview 4 is currently not available for download on GitHub Action
 [![Build .NET 10 Preview (Ubuntu 24.04)](https://github.com/WhiteWrym18/SnakeNetFusion/actions/workflows/.net10-ubuntu-2404.yml/badge.svg?branch=main)](https://github.com/WhiteWrym18/SnakeNetFusion/actions/workflows/.net10-ubuntu-2404.yml)
 [![Build .NET 10 Preview (macOS Catalyst)](https://github.com/WhiteWrym18/SnakeNetFusion/actions/workflows/.net10-MacCatalyst.yml/badge.svg?branch=main)](https://github.com/WhiteWrym18/SnakeNetFusion/actions/workflows/.net10-MacCatalyst.yml)
 
-## Compatibility
+### Compatibility
 
 | Operating System      | Framework          | Supported            | Note                                                     |
 |----------------------|--------------------|----------------------|----------------------------------------------------------|
@@ -23,7 +26,7 @@ This application is compatible with Windows 10/11 (via .NET 10 Preview), Ubuntu 
 
 **Note:** .NET 10 Preview 4 is not currently available for download on GitHub Actions. CI builds for .NET 10 will fail until Microsoft releases a new preview or stable version. Local builds may still work if you have the SDK installed.
 
-## Getting Started
+### Getting Started
 
 Build and run with:
 
